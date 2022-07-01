@@ -8,21 +8,19 @@ job:
   CI:
   runs-on: ubuntu-latest
   steps:
-    # 拉取代码
     - name: Checkout respository
       uses: actions/checkout@v2
-    # 下载node
+
     - name: Install dependencies
       uses: actions/setup-node@v3
       with:
         node-version: 16.x
-    # 检查缓存
+
     - name: Check cache
      id: cache-dependencies
       uses: actions/cache@v3
       with:
-      # 缓存文件路径
-        
+    
         key: ${{ runner.OS  }} - ${{ hashFiles('**/yarn.lock) }}
         path: |
         **/node_modules
