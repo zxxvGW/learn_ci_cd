@@ -2,6 +2,8 @@ name: CI
 on:
   pull_request:
     branches: [master]
+  push:
+    branches: [master]
 jobs:
   CI:
     runs-on: ubuntu-latest
@@ -11,8 +13,6 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          # vite 需要在node>=12 的环境下执行
-          # puppeteer 需要在node>=14.1.0 的环境下执行
           node-version: '16.x'
       - name: Cache
         id: cache-dependencies
@@ -27,4 +27,4 @@ jobs:
       - name: Running Lint
         run: yarn lint
       - name: Running Test
-        run: yarn test
+        run: yarn test:coverage
